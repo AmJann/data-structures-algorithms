@@ -11,6 +11,7 @@ const everyone = [
   "darla",
   "hank",
 ];
+const large = new Array(10000).fill("nemo");
 
 function findNemo(array) {
   let t0 = performance.now();
@@ -23,4 +24,4 @@ function findNemo(array) {
   console.log("Call to find Nemo took " + (t1 - t0) + " milliseconds");
 }
 
-findNemo(everyone);
+findNemo(large);
