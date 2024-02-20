@@ -22,7 +22,17 @@ class linkedList {
     this.tail = this.head;
     this.length = 1;
   }
+  append(value) {
+    this.tail.next = {
+      value: value,
+      next: null,
+    };
+    this.tail = this.tail.next;
+    this.length++;
+  }
 }
 
 const myLinkedList = new linkedList(10);
+myLinkedList.append(5);
+myLinkedList.append(16);
 console.log(myLinkedList);
