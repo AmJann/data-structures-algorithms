@@ -41,10 +41,19 @@ class linkedList {
     return this;
   }
 
+  //   prepend(value) {
+  //     const newNode = {
+  //       value: value,
+  //       next: this.head,
+  //     };
+  //     this.head = newNode;
+  //     this.length++;
+  //     return this;
+  //   }
   prepend(value) {
     const newNode = {
       value: value,
-      next: this.head,
+      next: null,
     };
     this.head = newNode;
     this.length++;
