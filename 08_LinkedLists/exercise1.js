@@ -22,13 +22,23 @@ class linkedList {
     this.tail = this.head;
     this.length = 1;
   }
+  //   append(value) {
+  //     this.tail.next = {
+  //       value: value,
+  //       next: null,
+  //     };
+  //     this.tail = this.tail.next;
+  //     this.length++;
+  //   }
   append(value) {
-    this.tail.next = {
+    const newNode = {
       value: value,
       next: null,
     };
-    this.tail = this.tail.next;
+    this.tail.next = newNode;
+    this.tail = newNode;
     this.length++;
+    return this;
   }
 }
 
