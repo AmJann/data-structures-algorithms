@@ -17,14 +17,16 @@ class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+    this.prev = null;
   }
 }
 
-class linkedList {
+class doublyLinkedList {
   constructor(value) {
     this.head = {
       value: value,
       next: null,
+      prev: null,
     };
     this.tail = this.head;
     this.length = 1;
@@ -39,6 +41,7 @@ class linkedList {
   //   }
   append(value) {
     const newNode = new Node(value);
+    newNode.prev = this.tail;
     this.tail.next = newNode;
     this.tail = newNode;
     this.length++;
@@ -56,7 +59,9 @@ class linkedList {
   //   }
   prepend(value) {
     const newNode = new Node(value);
+
     newNode.next = this.head;
+    this.head.prev = newNode;
     this.head = newNode;
     this.length++;
     return this;
@@ -77,10 +82,13 @@ class linkedList {
     }
     const newNode = new Node(value);
     const leader = this.traverseToIndex(index - 1);
-    const holdingPointer = leader.next;
+    const follower = leader.next;
     leader.next = newNode;
-    newNode.next = holdingPointer;
+    newNode.next = follower;
+    newNode.prev = leader;
+    follower.prev = newNode;
     this.length++;
+    console.log(this);
     return this;
   }
   traverseToIndex(index) {
@@ -92,31 +100,41 @@ class linkedList {
     }
     return currentNode;
   }
+  // remove(index) {
+  //   if (index > this.length - 1) {
+  //     console.log("index does not exist");
+  //   }
+  //   const leader = this.traverseToIndex(index - 1);
+  //   const holdingPointer = leader.next.next;
+  //   console.log(holdingPointer);
+  //   if (index === this.length - 1) {
+  //     leader.next = null;
+  //     console.log("here");
+  //   } else {
+  //     leader.next = null;
+  //     leader.next = holdingPointer;
+  //     console.log("there");
+  //   }
+  //   this.length--;
+  //   return this;
+  // }
+
   remove(index) {
-    if (index > this.length - 1) {
-      console.log("index does not exist");
-    }
+    //check params
     const leader = this.traverseToIndex(index - 1);
-    const holdingPointer = leader.next.next;
-    console.log(holdingPointer);
-    if (index === this.length - 1) {
-      leader.next = null;
-      console.log("here");
-    } else {
-      leader.next = null;
-      leader.next = holdingPointer;
-      console.log("there");
-    }
+    const unwantedNode = leader.next;
+    leader.next = unwantedNode.next;
+    unwantedNode.next.prev = leader;
     this.length--;
     return this;
   }
 }
 
-const myLinkedList = new linkedList(10);
+const myLinkedList = new doublyLinkedList(10);
 myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(2, 99);
-myLinkedList.remove(2);
+// myLinkedList.remove(2);
 myLinkedList.printList();
 // console.log(myLinkedList);
