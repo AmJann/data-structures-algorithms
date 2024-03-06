@@ -28,7 +28,7 @@ function findIndex(head, index) {
   return findIndex(head.next, index);
 }
 
-console.log(findIndex(a, 2));
+console.log(findIndex(a, 3));
 
 //create a function that accepts head and index as arguments
 //create a count variable set to 0
@@ -42,7 +42,7 @@ function FindIndexUsingWhile(head, index) {
   let count = 0;
   let current = head;
   if (current === null) {
-    return false;
+    return null;
   }
   while (current !== null) {
     if (index === count) {
