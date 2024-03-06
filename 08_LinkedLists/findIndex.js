@@ -14,6 +14,12 @@ a.next = b;
 b.next = c;
 c.next = d;
 
+//set count
+//create function that accepts head and index as arguments
+//check if count is equal to head, if so return head.val
+//if head is equal to null return false
+//final return statment should be a call to the same function to make it recursive
+
 let count = 0;
 function findIndex(head, index) {
   if (count === index) return head.val;
@@ -23,3 +29,28 @@ function findIndex(head, index) {
 }
 
 console.log(findIndex(a, 2));
+
+//create a function that accepts head and index as arguments
+//create a count variable set to 0
+//create a current variable set to head
+//if current is equal to null return false
+//while current is not equal to null, check if index matches count
+//if match return current.val
+//else current = current.next
+
+function FindIndexUsingWhile(head, index) {
+  let count = 0;
+  let current = head;
+  if (current === null) {
+    return false;
+  }
+  while (current !== null) {
+    if (index === count) {
+      return current.val;
+    }
+    count++;
+    current = current.next;
+  }
+}
+
+console.log(FindIndexUsingWhile(a, 3));
