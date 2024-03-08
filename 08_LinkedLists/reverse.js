@@ -23,18 +23,14 @@ set curr to next and prev to curr
 function reverse(head) {
   let prev = null;
   let curr = head;
-  let temp = curr.next;
-  while (curr.next && curr !== null) {
+
+  while (curr !== null) {
+    let temp = curr.next;
     curr.next = prev;
     prev = curr;
     curr = temp;
-    temp = curr.next;
   }
-
-  if (curr.next === null) {
-    curr.next = prev;
-    head = curr;
-  }
+  head = prev;
   return head;
 }
 
